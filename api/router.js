@@ -3,6 +3,7 @@ import axios from "axios";
 
 const router = Router();
 
+// Obtener listado de productos (Max 4)
 router.get("/", async (req, res) => {
   const query = req.query.q;
   if (!query) {
@@ -40,6 +41,49 @@ router.get("/", async (req, res) => {
       categories: categories,
       items: items,
     });
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+// Obtener detalle un producto por su id
+router.get("/:id", async (req, res) => {
+  const itemId = req.params.id;
+
+  try {
+    const response = await axios.get(
+      `https://api.mercadolibre.com/items/${itemId}`
+    );
+    const item = {
+      id: response.data.id,
+      title: response.data.title,
+      price: {
+        currency: response.data.currency_id,
+        amount: Math.floor(response.data.price),
+        decimals: Math.round((response.data.price % 1) * 100),
+      },
+      picture: response.data.thumbnail,
+      condition: response.data.condition,
+      free_shipping: response.data.shipping.free_shipping,
+    };
+
+    res.json(item);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+// Obtener descripcion de un producto por su id
+router.get("/:id/description", async (req, res) => {
+  const itemId = req.params.id;
+
+  try {
+    const response = await axios.get(
+      `https://api.mercadolibre.com/items/${itemId}/description`
+    );
+    const description = response.data.plain_text;
+
+    res.json({ description });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

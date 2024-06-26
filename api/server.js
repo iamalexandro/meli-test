@@ -6,12 +6,6 @@ const app = express();
 
 app.use(cors());
 
-app.get("/users", (req, res) => {
-  res.send({
-    users: [],
-  });
-});
-
 app.use("/api/items", router);
 
 app.listen(3000, () => {

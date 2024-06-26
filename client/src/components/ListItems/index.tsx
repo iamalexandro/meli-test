@@ -4,7 +4,11 @@ import { selectItems, selectLoading } from "../../redux/itemsSlice";
 import Loader from "../Loader";
 import "./index.scss";
 
-const ListItems: React.FC = () => {
+interface ListItemsProps {
+  handleFetchItemById: (id: string) => void;
+}
+
+const ListItems: React.FC<ListItemsProps> = ({ handleFetchItemById }) => {
   const items = useAppSelector(selectItems);
   const loading = useAppSelector(selectLoading);
 
@@ -26,7 +30,11 @@ const ListItems: React.FC = () => {
           {items.map(
             (item) =>
               item != null && (
-                <li key={item.id} className="cards__item flex">
+                <li
+                  key={item.id}
+                  className="cards__item flex"
+                  onClick={() => handleFetchItemById(item.id)}
+                >
                   <div>
                     <img
                       className="cards__item__picture"
