@@ -41,6 +41,11 @@ $gray-400: #eeeeee;
         padding-top: 32px;
         margin: 0;
       }
+      &--shipping {
+        position: absolute;
+        width: 25px;
+        margin: 2px 0 0 1rem;
+      }
     }
     &__city {
       font-size: 12px;

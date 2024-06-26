@@ -3,6 +3,7 @@ import { useAppSelector } from "../../redux/hooks";
 import { selectItems, selectLoading } from "../../redux/itemsSlice";
 import Loader from "../Loader";
 import "./index.scss";
+const FreeShippingIcon = `${process.env.PUBLIC_URL}/images/ic-shipping2x.png`;
 
 interface ListItemsProps {
   handleFetchItemById: (id: string) => void;
@@ -45,7 +46,13 @@ const ListItems: React.FC<ListItemsProps> = ({ handleFetchItemById }) => {
                   <div className="cards__item__info">
                     <p className="cards__item__info--price">
                       $ {item.price.amount.toLocaleString()}{" "}
-                      {item.free_shipping}
+                      {item.free_shipping && (
+                        <img
+                          className="cards__item__info--shipping"
+                          src={FreeShippingIcon}
+                          alt={item.title}
+                        />
+                      )}
                     </p>
                     <p className="cards__item__info--title">{item.title}</p>
                   </div>
