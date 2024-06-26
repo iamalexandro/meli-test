@@ -1,5 +1,53 @@
+// colors
+$yellow: #ffe600;
+$gray-100: #333333;
+$gray-200: #666666;
+$gray-300: #999999;
+$gray-400: #eeeeee;
+
+// utils
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
 .navbar {
-  height: 20rem;
-  width: 100vw;
-  border: solid 1px red;
+  height: 42px;
+  background-color: $yellow;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  &__logo-meli {
+    margin: 3px 25px 3px 0px;
+  }
+  &__input {
+    position: relative;
+    font-size: 18px;
+    font-family: inherit;
+    border-radius: 2px;
+    height: 18px;
+    padding: 10px 60px 10px 15px;
+    border: 1.5px solid white;
+    width: 60%;
+    &:focus {
+      outline: none;
+    }
+  }
+  &__btn-search {
+    cursor: pointer;
+    background-color: $gray-400;
+    position: relative;
+    right: 5px;
+    height: 40px;
+    width: 43px;
+    border: none;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-size: contain;
+    padding: 8px 10px;
+  }
 }

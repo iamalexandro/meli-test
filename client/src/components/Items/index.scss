@@ -1,0 +1,62 @@
+// colors
+$yellow: #ffe600;
+$gray-100: #333333;
+$gray-200: #666666;
+$gray-300: #999999;
+$gray-400: #eeeeee;
+
+// utils
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.cards {
+  background-color: white;
+  list-style: none;
+  margin: 2rem 10rem;
+  border-radius: 4px;
+  padding: 0 2rem;
+  &__loader {
+    background-color: $gray-400;
+    text-align: center;
+  }
+  &__item {
+    cursor: pointer;
+    border-bottom: 1px solid $gray-400;
+    padding-bottom: 2rem;
+    padding: 16px;
+    &__picture {
+      border-radius: 4px;
+      height: 180px;
+      width: 180px;
+      margin: 16px;
+    }
+    &__info {
+      text-align: left;
+      width: 100%;
+
+      &--price {
+        margin: 0;
+        padding-top: 32px;
+        font-size: 24px;
+        font-weight: 400;
+      }
+      &--title {
+        font-size: 18px;
+        padding-top: 32px;
+        margin: 0;
+      }
+    }
+    &__city {
+      font-size: 12px;
+      text-align: right;
+      width: 16rem;
+      color: #999999;
+    }
+  }
+}
