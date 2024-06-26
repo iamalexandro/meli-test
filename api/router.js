@@ -65,6 +65,7 @@ router.get("/:id", async (req, res) => {
       picture: response.data.thumbnail,
       condition: response.data.condition,
       free_shipping: response.data.shipping.free_shipping,
+      initial_quantity: response.data.initial_quantity,
     };
 
     res.json(item);

@@ -6,6 +6,7 @@ import {
   selectDescriptionItemSelected,
 } from "../../redux/itemsSlice";
 import Loader from "../Loader";
+import "./index.scss";
 
 const ItemsList: React.FC = () => {
   const item = useAppSelector(selectItemSelected);
@@ -13,7 +14,13 @@ const ItemsList: React.FC = () => {
   const loading = useAppSelector(selectLoading);
 
   return (
-    <div>
+    <div
+      className="detail"
+      style={{
+        padding: item ? "32px" : 0,
+        backgroundColor: loading ? "#eeeeee" : "",
+      }}
+    >
       {loading ? (
         <div className="cards__loader">
           <Loader />
@@ -22,29 +29,31 @@ const ItemsList: React.FC = () => {
       ) : (
         <>
           {item != null && (
-            <div
-              key={item.id}
-              style={{
-                border: "1px solid #ddd",
-                padding: "10px",
-                marginBottom: "10px",
-              }}
-            >
-              <h2>{item.title}</h2>
-              <img
-                src={item.picture}
-                alt={item.title}
-                style={{ width: "100px", height: "100px" }}
-              />
-              <p>
-                {item.isNew ? "Nuevo" : "Usado"} - {item.salesCount} vendidos{" "}
-              </p>
-              <p>
-                Precio: $ {item.price.amount.toLocaleString()}{" "}
-                {item.price.currency}
-              </p>
-              <h3>Descripccion del producto</h3>
-              <p>{description}</p>
+            <div className="detail__container">
+              <div className="detail__left">
+                <div className="detail__left-img-container">
+                  <img
+                    src={item.picture}
+                    alt={item.title}
+                    style={{ width: "100%", maxWidth: "680px" }}
+                  />
+                </div>
+                <p className="detail__left-description-title">
+                  Descripción del producto
+                </p>
+                <p className="detail__left-description">{description}</p>
+              </div>
+              <div className="detail__right no-margin">
+                <p className="detail__right-new no-margin">
+                  {item.condition ? "Nuevo" : "Usado"} - {item.initial_quantity}{" "}
+                  vendidos{" "}
+                </p>
+                <p className="detail__right-title no-margin">{item.title}</p>
+                <p className="detail__right-price no-margin">
+                  $ {item.price.amount.toLocaleString()} {item.price.currency}
+                </p>
+                <button className="detail__right-btn">Comprar</button>
+              </div>
             </div>
           )}
         </>

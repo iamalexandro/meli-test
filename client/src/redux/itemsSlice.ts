@@ -22,8 +22,8 @@ interface ItemSelected {
   };
   picture: string;
   free_shipping: boolean;
-  isNew?: boolean;
-  salesCount?: number;
+  condition?: boolean;
+  initial_quantity?: number;
   description: string;
 }
 
