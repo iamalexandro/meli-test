@@ -31,6 +31,7 @@ interface ItemsState {
   items: Item[];
   loading: boolean;
   itemSelected: ItemSelected | null;
+  categories: string[];
   descriptionItemSelected: string | null;
 }
 
@@ -38,6 +39,7 @@ const initialState: ItemsState = {
   items: [],
   loading: false,
   itemSelected: null,
+  categories: [],
   descriptionItemSelected: null,
 };
 
@@ -47,7 +49,7 @@ export const fetchItems = createAsyncThunk(
     const response = await axios.get(
       `http://localhost:3000/api/items?q=${query}`
     );
-    return response.data.items as Item[];
+    return response.data;
   }
 );
 
@@ -82,8 +84,9 @@ const itemsSlice = createSlice({
       .addCase(fetchItems.pending, (state) => {
         state.loading = true;
       })
-      .addCase(fetchItems.fulfilled, (state, action: PayloadAction<Item[]>) => {
-        state.items = action.payload;
+      .addCase(fetchItems.fulfilled, (state, action) => {
+        state.items = action.payload.items;
+        state.categories = action.payload.categories;
         state.loading = false;
       })
       .addCase(fetchItems.rejected, (state) => {
@@ -129,5 +132,6 @@ export const selectItemSelected = (state: RootState) =>
   state.items.itemSelected;
 export const selectDescriptionItemSelected = (state: RootState) =>
   state.items.descriptionItemSelected;
+export const selectCategories = (state: RootState) => state.items.categories;
 
 export default itemsSlice.reducer;

@@ -3,7 +3,6 @@ import itemsReducer from "./itemsSlice";
 
 export const store = configureStore({
   reducer: {
-    // cambiar items por otra cosa mas entendible
     items: itemsReducer,
   },
 });

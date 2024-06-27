@@ -7,6 +7,7 @@ import "./App.scss";
 import DashboardPage from "./pages/DashboardPage";
 import ItemDetailPage from "./pages/ItemDetailPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Breadcrumb from "./components/Breadcrumb";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -23,6 +24,7 @@ function App() {
           setQuery={setQuery}
           handleSearch={handleSearch}
         />
+        <Breadcrumb />
         <Routes>
           <Route path="/" element={<DashboardPage />} />
           <Route path="/itemDetail" element={<ItemDetailPage />} />
