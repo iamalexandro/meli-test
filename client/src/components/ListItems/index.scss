@@ -18,9 +18,11 @@ $gray-400: #eeeeee;
   }
   &__item {
     cursor: pointer;
-    border-bottom: 1px solid $gray-400;
     padding-bottom: 2rem;
     padding: 16px;
+    background: white;
+    border: none;
+    border-bottom: 1px solid $gray-400;
     &__picture {
       border-radius: 4px;
       height: 180px;

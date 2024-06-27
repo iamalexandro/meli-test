@@ -13,7 +13,7 @@ const Breadcrumb: React.FC = () => {
 
   return (
     <nav aria-label="breadcrumb">
-      <ul className="breadcrumb__list">
+      <ol className="breadcrumb__list">
         {categories.map((category, index) => (
           <li
             key={index}
@@ -21,11 +21,15 @@ const Breadcrumb: React.FC = () => {
               index === categories.length - 1 ? "breadcrumb__item--last" : ""
             }`}
           >
-            {category}
+            {index !== categories.length - 1 ? (
+              <span className="breadcrumb__link">{category}</span>
+            ) : (
+              <span aria-current="page">{category}</span>
+            )}
             {index !== categories.length - 1 && " > "}
           </li>
         ))}
-      </ul>
+      </ol>
     </nav>
   );
 };
