@@ -16,7 +16,7 @@
    ```bash
    npm run dev
    ```
-4. **Start frontend server in /api:**
+4. **Start frontend server in /client:**
    ```bash
    npm run start
    ```
